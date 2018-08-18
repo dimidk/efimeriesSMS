@@ -17,7 +17,7 @@ from readXlsFile import MakeInfoDict
 
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
-	to='6938802532'
+	
 	urlsms_sender=passwd.urlsms+'&to='+to	
 	urlsms_sender=urlsms_sender+'&from='+fromSender+'&text='+str(text)+str(name)+" "+str(text1)+str(absences)+"&type=xml"
 	print "sms url",urlsms_sender
