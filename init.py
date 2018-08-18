@@ -95,8 +95,6 @@ def formatXls(elements):
 	else:
 		col=[value for value in elements[0].values()]
 		
-		"""print col"""
-		
 		return col
 
 

@@ -56,10 +56,20 @@ def startRow(line,col):
 
 
 """read xls from first data row line, and first col data line"""
-def readSpecificXls(start_row,nrows,start_col,sheet,col):
+def readSpecificXls(start_row,nrows,start_col,sheet,col,row=''):
 	
 	now=init.get_datetime()
 	init.fp_log.write(now[0]+' '+now[1]+':Read excell row \n')
+	
+	
+	print "all function parameters which is called\n"
+	print "start_row,nrows,start_col,:",start_row,nrows,start_col,
+	print "col, xlsFormat[1]:",col,row
+	
+	for c in col:
+		print c
+	for r in row:
+		print r
 	
 	for i in range(start_row+1,nrows):
 		
@@ -68,13 +78,27 @@ def readSpecificXls(start_row,nrows,start_col,sheet,col):
 		sys.setdefaultencoding('utf-8')
 		
 		line=sheet.row_values(i)
-		if i==28 or "" in line: 
+		
+		"""print "space in line and line length:",line.count(""),len(line)"""
+		if len(line)==line.count(""):
 			break
+		print "line[0]",line[0]
+		print "row[0] ",row[0]
+		if line[0]==row[0]:
+			pass
+		else:
+			print "in else so stop processing excell"
+			break
+		"""if i==28 or "" in line: 
+			break"""
 				
 		k=start_col
 		if start_col>0:
 			
 			for j in range(sheet.ncols-start_col):
+				if line[k]=="":
+					continue
+				
 				rowdata=[t for t in line if line.index(t)<start_col]
 				rowdata.append(col[j])
 				"""parenthesis creates a generator, so it must explicitly declared"""
@@ -92,7 +116,10 @@ def readSpecificXls(start_row,nrows,start_col,sheet,col):
 		else:				
 		
 			for j in range(sheet.ncols-start_col):
-						
+				
+				if line[k]=="":
+					continue
+					
 				teachername=line[k].strip().upper()
 				teachername=init.replaceTono(teachername)
 				"""print teachername"""
@@ -135,8 +162,19 @@ def readXlsFile(xlsFormat,col):
 	"""start row in xls file, if start_col=0 then there is no row format"""
 	start_col=startRow(line,col)
 	
+	"here is the problem. To stop when the file efimeries file ends"
 	
-	readSpecificXls(start_row,sheet.nrows,start_col,sheet,col)
+	if len(xlsFormat)>0:
+		print "process excell with row"
+		
+		print "row data:",xlsFormat[1]
+		print "all function parameters which is going to be called\n"
+		print "start_row,sheet.nrows,start_col,col,xlsFormat[1]:",start_row,sheet.nrows,start_col,col
+		
+		readSpecificXls(start_row,sheet.nrows,start_col,sheet,col,xlsFormat[1])
+	else:
+		print "process file with no row"
+		readSpecificXls(start_row,sheet.nrows,start_col,sheet,col)
 	
 	
 	"""print "len dict ", len(MakeInfoDict.infoDict)

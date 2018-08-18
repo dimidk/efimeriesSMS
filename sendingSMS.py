@@ -28,8 +28,8 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 		
 		print "send sms to ",to
 		
-		"""if i<1:		
-			result=urllib.urlretrieve(urlsms_sender)"""
+		if i<1:		
+			result=urllib.urlretrieve(urlsms_sender)
 					
 	except:
 
