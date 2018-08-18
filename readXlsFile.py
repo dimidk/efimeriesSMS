@@ -66,10 +66,7 @@ def readSpecificXls(start_row,nrows,start_col,sheet,col,row=''):
 	print "start_row,nrows,start_col,:",start_row,nrows,start_col,
 	print "col, xlsFormat[1]:",col,row
 	
-	for c in col:
-		print c
-	for r in row:
-		print r
+	
 	
 	for i in range(start_row+1,nrows):
 		
