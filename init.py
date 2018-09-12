@@ -56,6 +56,8 @@ def readXml(xmlname):
 	global xlsFileName
 	global text1
 	
+	print "in readXml function:",xmlname
+	
 	tree=xml.parse(xmlname)
 	root=tree.getroot()
 	text1=root.tag
@@ -78,6 +80,10 @@ def readXml(xmlname):
 			elements[i][subchild.tag]=subchild.text
 		i+=1
 	
+	for t in elements:
+		for key,val in t.items():
+			print key,"=>",val
+	
 	return elements
 
 
@@ -92,6 +98,8 @@ def formatXls(elements):
 		row=[value for value in elements[1].values()]
 			
 		return col,row
+		
+		
 	else:
 		col=[value for value in elements[0].values()]
 		
