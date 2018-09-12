@@ -76,9 +76,17 @@ def readSpecificXls(start_row,nrows,start_col,sheet,col,row=''):
 		
 		line=sheet.row_values(i)
 		
-		"""print "space in line and line length:",line.count(""),len(line)"""
-		if len(line)==line.count(""):
-			break
+		
+		""" αν βρει στοιχείο το row τότε συνεχίζει αλλιώς σταματά"""
+		
+		if line[0]==row[0]:
+			pass
+		else:
+			continue
+		
+		"""η λύση είναι να κοιτάξω το row[i] αν είναι 0 κενό ή όχι τότε θα μπορώ να τσεκάρω το τέλος του αρχείου. Όλο το θεμά
+		εξαρτάται καθαρά απο εκεί. επειδή υπολογίζει τις γραμμές των δεδομένων nrows αν δώσει παραπάνω αλλά είναι κενά τότε 
+		απλά θα συνεχίζει. 
 		print "line[0]",line[0]
 		print "row[0] ",row[0]
 		if line[0]==row[0]:
@@ -86,7 +94,8 @@ def readSpecificXls(start_row,nrows,start_col,sheet,col,row=''):
 		else:
 			print "in else so stop processing excell"
 			break
-		"""if i==28 or "" in line: 
+			
+		if i==28 or "" in line: 
 			break"""
 				
 		k=start_col
@@ -129,7 +138,7 @@ def readSpecificXls(start_row,nrows,start_col,sheet,col,row=''):
 				
 
 
-def readXlsFile(xlsFormat,col):
+def readXlsFile(xlsFormat,col,row):
 		
 
 	try:
@@ -161,14 +170,14 @@ def readXlsFile(xlsFormat,col):
 	
 	"here is the problem. To stop when the file efimeries file ends"
 	
-	if len(xlsFormat)>0:
+	if len(xlsFormat)>1:
 		print "process excell with row"
 		
-		print "row data:",xlsFormat[1]
+		"""print "row data:",xlsFormat[1]
 		print "all function parameters which is going to be called\n"
-		print "start_row,sheet.nrows,start_col,col,xlsFormat[1]:",start_row,sheet.nrows,start_col,col
+		print "start_row,sheet.nrows,start_col,col,xlsFormat[1]:",start_row,sheet.nrows,start_col,col"""
 		
-		readSpecificXls(start_row,sheet.nrows,start_col,sheet,col,xlsFormat[1])
+		readSpecificXls(start_row,sheet.nrows,start_col,sheet,col,row)
 	else:
 		print "process file with no row"
 		readSpecificXls(start_row,sheet.nrows,start_col,sheet,col)
