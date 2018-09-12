@@ -157,7 +157,7 @@ def mainFunction(pid):
 						
 		print "Read excell file for pid:",pid									
 		print "Make Information Dictionary for pid:",pid
-		readXlsFile.readXlsFile(xlsFormat,col)
+		readXlsFile.readXlsFile(xlsFormat,col,row)
 		
 		xlsfilename_prc=init.xlsFileName+'.prc'
 		os.rename(init.xlsFileName,xlsfilename_prc)
