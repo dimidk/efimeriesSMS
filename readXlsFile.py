@@ -56,7 +56,7 @@ def startRow(line,col):
 
 
 """read xls from first data row line, and first col data line"""
-def readSpecificXls(start_row,nrows,start_col,sheet,col,row=''):
+def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 	
 	now=init.get_datetime()
 	init.fp_log.write(now[0]+' '+now[1]+':Read excell row \n')
@@ -78,25 +78,17 @@ def readSpecificXls(start_row,nrows,start_col,sheet,col,row=''):
 		
 		
 		""" αν βρει στοιχείο το row τότε συνεχίζει αλλιώς σταματά"""
-		
-		if line[0]==row[0]:
-			pass
-		else:
-			continue
-		
-		"""η λύση είναι να κοιτάξω το row[i] αν είναι 0 κενό ή όχι τότε θα μπορώ να τσεκάρω το τέλος του αρχείου. Όλο το θεμά
-		εξαρτάται καθαρά απο εκεί. επειδή υπολογίζει τις γραμμές των δεδομένων nrows αν δώσει παραπάνω αλλά είναι κενά τότε 
-		απλά θα συνεχίζει. 
-		print "line[0]",line[0]
-		print "row[0] ",row[0]
-		if line[0]==row[0]:
-			pass
-		else:
-			print "in else so stop processing excell"
-			break
+		if index==0:
+			if line.count("")==ncols:
+				continue
+			else:
+				pass
 			
-		if i==28 or "" in line: 
-			break"""
+		else:
+			if line[0]==row[0]:
+				pass
+			else:
+				continue
 				
 		k=start_col
 		if start_col>0:
@@ -170,33 +162,15 @@ def readXlsFile(xlsFormat,col,row):
 	
 	"here is the problem. To stop when the file efimeries file ends"
 	
-	if len(xlsFormat)>1:
-		print "process excell with row"
+	if type(xlsFormat)==tuple:
+		"""print "process excell with row"""
 		
-		"""print "row data:",xlsFormat[1]
-		print "all function parameters which is going to be called\n"
-		print "start_row,sheet.nrows,start_col,col,xlsFormat[1]:",start_row,sheet.nrows,start_col,col"""
-		
-		readSpecificXls(start_row,sheet.nrows,start_col,sheet,col,row)
+		index=1
+		readSpecificXls(index,start_row,sheet.nrows,sheet.ncols,start_col,sheet,col,row)
 	else:
-		print "process file with no row"
-		readSpecificXls(start_row,sheet.nrows,start_col,sheet,col)
+		"""print "process file with no row"""
+		index=0
+		readSpecificXls(index,start_row,sheet.nrows,sheet.ncols,start_col,sheet,col)
 	
 	
-	"""print "len dict ", len(MakeInfoDict.infoDict)
-	for key,value in MakeInfoDict.infoDict.items():
-		if type(value)==list and len(value)>1:
-			for value1 in value:
-				for val in value1:
-					print key,val
-
-		else:
-			for val in value:
-				print key,val"""
-				
-
-
-				
-		
 	
-"""readXlsFile(xlsFormat)"""
