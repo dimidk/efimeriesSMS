@@ -17,7 +17,7 @@ from readXlsFile import MakeInfoDict
 
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
-	
+	to='6938802532';
 	urlsms_sender=passwd.urlsms+'&to='+to	
 	urlsms_sender=urlsms_sender+'&from='+fromSender+'&text='+str(text)+str(name)+" "+str(text1)+str(absences)+"&type=xml"
 	print "sms url",urlsms_sender
@@ -55,11 +55,8 @@ def sendSMSAll():
 		
 		init.toSend=tstoixeia[2]
 		init.teacherName=key+' '+tstoixeia[1]
-		"""print "teacher full name:",init.teacherName
-		print "teacher full name:",tstoixeia[1].decode('utf-8')[0]"""
 		
 		searchkey=key+' '+tstoixeia[1].decode('utf-8')[0]
-		"""print "key:",key, "==>searchkey",searchkey"""
 		
 		if MakeInfoDict.infoDict.has_key(key):
 			

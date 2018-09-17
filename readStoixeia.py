@@ -124,7 +124,3 @@ def read_files():
 	init.fp_log.write(now[0]+' '+now[1]+':Complete Teachers'' information dictionary\n')
 	
 
-"""read_files()
-for key,value in TeachersStoixeia.teacherstoixeia.items():
-		for v in value:
-			print key,"=>",v"""
