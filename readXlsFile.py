@@ -43,15 +43,37 @@ class MakeInfoDict():
 def startRow(line,col):
 	i=0
 	start_col=0
+	print "print column xml in func startRow"
+	for c in col:
+		print c
 	for info in line:
-
-		if info=='':
-			start_col+=1
-			continue
-		col.pop(i)
-		col.insert(i,info)
-		i+=1
+		print "info in startRow:",info
 		
+		"""info==''"""
+		print col[i],i
+		"""if info==col[i]:
+			break"""
+		
+		if info in col:
+			index=col.index(info)
+			temp=col[i]
+			
+			col.pop(i)
+			col.insert(i,info)
+			col.pop(index)
+			col.insert(index,temp)
+			i+=1
+			
+			break
+		else:
+			
+			start_col+=1
+		"""col.pop(i)
+		col.insert(i,info)
+		i+=1"""
+	
+	print "column start:",start_col
+	
 	return start_col
 
 
@@ -146,15 +168,19 @@ def readXlsFile(xlsFormat,col,row):
 		
 	print init.xlsFileName
 	sheet=fp.sheet_by_index(0)
-	"""print "row and columns in excell:",sheet.nrows,sheet.ncols"""
+	print "row and columns in excell:",sheet.nrows,sheet.ncols
 	
 	"""start line in xls file"""
 	for i in range(sheet.nrows):
-
+		
+		
 		line=sheet.row_values(i)
+		print "line:",line
 		if col[i] not in line:
 			continue
 		start_row=i
+		print "row start:",start_row
+		
 		break
 		
 	"""start row in xls file, if start_col=0 then there is no row format"""
