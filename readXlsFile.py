@@ -43,35 +43,39 @@ class MakeInfoDict():
 def startRow(line,col):
 	i=0
 	start_col=0
-	print "print column xml in func startRow"
+	"""print "print column xml in func startRow"
 	for c in col:
-		print c
+		print c"""
 	for info in line:
-		print "info in startRow:",info
-		
-		"""info==''"""
-		print col[i],i
+		"""print "info in startRow:",info"""
+		x=info
+		"""print col[i],i"""
 		"""if info==col[i]:
 			break"""
 		
-		if info in col:
-			index=col.index(info)
+		if x in col:
+			
+			index=col.index(x)
 			temp=col[i]
+			"""print "in if",x,' ',index
+			print "in inf",col[i],' ',temp"""
 			
 			col.pop(i)
-			col.insert(i,info)
+			col.insert(i,x)
 			col.pop(index)
 			col.insert(index,temp)
 			i+=1
 			
-			break
+			
 		else:
 			
 			start_col+=1
 		"""col.pop(i)
 		col.insert(i,info)
 		i+=1"""
-	
+	"""print "after fixing xml columns"
+	for c in col:
+		print c"""
 	print "column start:",start_col
 	
 	return start_col
@@ -97,7 +101,9 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 		sys.setdefaultencoding('utf-8')
 		
 		line=sheet.row_values(i)
-		
+		print "number of line read ",i
+		print "line[0] ",line[0]
+		print "row[0] ",row[0]
 		
 		""" αν βρει στοιχείο το row τότε συνεχίζει αλλιώς σταματά"""
 		if index==0:
@@ -106,11 +112,11 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 			else:
 				pass
 			
-		else:
+		"""else:
 			if line[0]==row[0]:
 				pass
 			else:
-				continue
+				continue"""
 				
 		k=start_col
 		if start_col>0:
@@ -120,8 +126,12 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 					continue
 				
 				rowdata=[t for t in line if line.index(t)<start_col]
+
 				rowdata.append(col[j])
 				"""parenthesis creates a generator, so it must explicitly declared"""
+				
+				for t in rowdata:
+					print "rowdata to add ",t
 				tup=tuple(t for t in rowdata)
 				
 				teachername=line[k].strip().upper()

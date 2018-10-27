@@ -19,8 +19,9 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
 	to='6938802532';
 	urlsms_sender=passwd.urlsms+'&to='+to	
-	urlsms_sender=urlsms_sender+'&from='+fromSender+'&text='+str(text)+str(name)+" "+str(text1)+str(absences)+"&type=xml"
-	print "sms url",urlsms_sender
+	urlsms_sender=urlsms_sender+'&from='+fromSender+'&text='+str(text)+str(name)+' '+str(text1)
+	urlsms_sender_text=urlsms_sender +str(absences)+'&type=xml'
+	print "sms url",urlsms_sender_text
 	
 	try:
 		now=init.get_datetime()
@@ -29,7 +30,7 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 		print "send sms to ",to
 		
 		if i<1:		
-			result=urllib.urlretrieve(urlsms_sender)
+			result=urllib.urlretrieve(urlsms_sender_text)
 					
 	except:
 
@@ -65,7 +66,7 @@ def sendSMSAll():
 			now=init.get_datetime()
 			init.fp_log.write(now[0]+' '+now[1]+':get information for name\n')
 		
-			efimeries=''
+			efimeries=' '
 			for infokey in infostoixeia:
 
 				if type(infokey)==tuple:

@@ -40,8 +40,7 @@ def replaceTono(name):
 			continue
 		else:
 			break
-		
-
+	
 	indexTono=letterTono.index(n)
 	nn=letterWithoutTono[indexTono]
 	"""nn=nn.decode('utf-8')"""
