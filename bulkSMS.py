@@ -20,8 +20,6 @@ from readXlsFile import MakeInfoDict
 """result=urllib.urlretrieve(urlsms)"""
 
 
-
-
 xmlfileExist=False
 xmlfile=[]
 xlsStoixeiaFile=False

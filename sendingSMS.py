@@ -18,27 +18,36 @@ from readXlsFile import MakeInfoDict
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
 	to='6938802532';
-	urlsms_sender=passwd.urlsms+'&to='+to	
-	urlsms_sender=urlsms_sender+'&from='+fromSender+'&text='+str(text)+str(name)+' '+str(text1)
-	urlsms_sender_text=urlsms_sender +str(absences)+'&type=xml'
-	print "sms url",urlsms_sender_text
+	urlsms_sender=passwd.urlsms+'&to='+to+'&from='+fromSender
 	
+	"""urlsms_sender=urlsms_sender+'&text='+str(text)+str(name)+' '+str(text1)"""
+	
+	type_xml='&type=xml'
+	sms_text=str(text)+str(name)+' '+str(text1) + str(absences)
+	print "\nsms text ",sms_text
+	sms_alltext=sms_text
+
+	if '&' in sms_text:
+		sms_text=sms_text.replace('&','%26')
+	
+	urlsms_sender_text=urlsms_sender +'&text='+str(sms_text)+type_xml
+	print "sms url",urlsms_sender_text
+		
 	try:
 		now=init.get_datetime()
 		init.fp_log.write(now[0]+' '+now[1]+':send SMS for teacher ' + name+'\n')
-		
+			
 		print "send sms to ",to
-		
-		if i<1:		
-			result=urllib.urlretrieve(urlsms_sender_text)
-					
+			
+		"""if i<1:"""		
+		result=urllib.urlretrieve(urlsms_sender_text)
+							
 	except:
 
 		now=init.get_datetime()
 		init.fp_log.write(now[0]+' '+now[1]+':SMS for teacher ' + name+' not send successfull\n')
-		
+			
 		print "SMS for teacher ",name,"not send successfull\n"
-		
 
 
 def sendSMSAll():
