@@ -17,7 +17,7 @@ from readXlsFile import MakeInfoDict
 
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
-	to='6938802532';
+	"""to='6938802532';"""
 	urlsms_sender=passwd.urlsms+'&to='+to+'&from='+fromSender
 	
 	"""urlsms_sender=urlsms_sender+'&text='+str(text)+str(name)+' '+str(text1)"""
@@ -39,8 +39,8 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 			
 		print "send sms to ",to
 			
-		if i<3:		
-			result=urllib.urlretrieve(urlsms_sender_text)
+		"""if i<3:"""
+		result=urllib.urlretrieve(urlsms_sender_text)
 							
 	except:
 

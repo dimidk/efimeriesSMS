@@ -31,6 +31,19 @@ fp_log=codecs.open(log_file,'a+')
 letterTono=['Ά','Έ','Ή','Ί','Ό','Ύ','Ώ','Ϊ','Ϋ']
 letterWithoutTono=['Α','Ε','Η','Ι','Ο','Υ','Ω','Ϊ','Ϋ']
 
+def checkInTono(name):
+	
+	a=False
+	
+	for n in name:
+		if n not in letterTono:
+			continue
+		else:
+			a=True
+			break
+
+	return a
+	
 def replaceTono(name):
 	
 

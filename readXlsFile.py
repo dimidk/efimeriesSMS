@@ -61,7 +61,9 @@ def startRow(line,col):
 		else:
 			
 			start_col+=1
-
+	
+	"""for c in col:
+		print "col:",c"""
 	return start_col
 
 
@@ -110,7 +112,13 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 				tup=tuple(t for t in rowdata)
 				
 				teachername=line[k].strip().upper()
-				teachername=init.replaceTono(teachername)
+				tonoExist=init.checkInTono(teachername)
+				if tonoExist:
+					"""print "teacherName:",teachername"""
+					teachername=init.replaceTono(teachername)
+					"""print "teachername after tono:",teachername"""
+				
+				
 				k+=1
 				if teachername.find(' ')!=-1:
 					allname=teachername.split()
