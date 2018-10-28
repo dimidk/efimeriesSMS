@@ -24,7 +24,7 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
 	type_xml='&type=xml'
 	sms_text=str(text)+str(name)+' '+str(text1) + str(absences)
-	print "\nsms text ",sms_text
+	"""print "\nsms text ",sms_text"""
 	sms_alltext=sms_text
 
 	if '&' in sms_text:
@@ -39,8 +39,8 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 			
 		print "send sms to ",to
 			
-		"""if i<1:"""		
-		result=urllib.urlretrieve(urlsms_sender_text)
+		if i<3:		
+			result=urllib.urlretrieve(urlsms_sender_text)
 							
 	except:
 

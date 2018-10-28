@@ -43,23 +43,14 @@ class MakeInfoDict():
 def startRow(line,col):
 	i=0
 	start_col=0
-	"""print "print column xml in func startRow"
-	for c in col:
-		print c"""
+
 	for info in line:
-		"""print "info in startRow:",info"""
-		x=info
-		"""print col[i],i"""
-		"""if info==col[i]:
-			break"""
-		
+
+		x=info		
 		if x in col:
 			
 			index=col.index(x)
 			temp=col[i]
-			"""print "in if",x,' ',index
-			print "in inf",col[i],' ',temp"""
-			
 			col.pop(i)
 			col.insert(i,x)
 			col.pop(index)
@@ -70,14 +61,7 @@ def startRow(line,col):
 		else:
 			
 			start_col+=1
-		"""col.pop(i)
-		col.insert(i,info)
-		i+=1"""
-	"""print "after fixing xml columns"
-	for c in col:
-		print c"""
-	print "column start:",start_col
-	
+
 	return start_col
 
 
@@ -87,13 +71,10 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 	now=init.get_datetime()
 	init.fp_log.write(now[0]+' '+now[1]+':Read excell row \n')
 	
-	
-	print "all function parameters which is called\n"
+	"""print "all function parameters which is called\n"
 	print "start_row,nrows,start_col,:",start_row,nrows,start_col,
-	print "col, xlsFormat[1]:",col,row
-	
-	
-	
+	print "col, xlsFormat[1]:",col,row"""
+
 	for i in range(start_row+1,nrows):
 		
 		"""Τελικά η μοναδική λύση στο encoding"""
@@ -101,9 +82,6 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 		sys.setdefaultencoding('utf-8')
 		
 		line=sheet.row_values(i)
-		print "number of line read ",i
-		print "line[0] ",line[0]
-		print "row[0] ",row[0]
 		
 		""" αν βρει στοιχείο το row τότε συνεχίζει αλλιώς σταματά"""
 		if index==0:
@@ -129,9 +107,6 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 
 				rowdata.append(col[j])
 				"""parenthesis creates a generator, so it must explicitly declared"""
-				
-				for t in rowdata:
-					print "rowdata to add ",t
 				tup=tuple(t for t in rowdata)
 				
 				teachername=line[k].strip().upper()
@@ -185,16 +160,16 @@ def readXlsFile(xlsFormat,col,row):
 		
 		
 		line=sheet.row_values(i)
-		print "line:",line
 		if col[i] not in line:
 			continue
 		start_row=i
-		print "row start:",start_row
 		
 		break
 		
 	"""start row in xls file, if start_col=0 then there is no row format"""
 	start_col=startRow(line,col)
+	
+	print "start reading excell from row:",start_row, " and from column:",start_col
 	
 	"here is the problem. To stop when the file efimeries file ends"
 	

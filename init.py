@@ -55,7 +55,7 @@ def readXml(xmlname):
 	global xlsFileName
 	global text1
 	
-	print "in readXml function:",xmlname
+	print "\nin readXml function:",xmlname
 	
 	tree=xml.parse(xmlname)
 	root=tree.getroot()
@@ -79,9 +79,9 @@ def readXml(xmlname):
 			elements[i][subchild.tag]=subchild.text
 		i+=1
 	
-	for t in elements:
+	"""for t in elements:
 		for key,val in t.items():
-			print key,"=>",val
+			print key,"=>",val"""
 	
 	return elements
 
