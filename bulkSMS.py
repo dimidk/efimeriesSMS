@@ -232,8 +232,9 @@ if __name__== '__main__':
 				now=init.get_datetime()
 				init.fp_log.write(now[0]+' '+now[1]+':there is no new xls file for pid'+str(pid)+'\n')
 				print "sleep 2 for pid",pid
-				time.sleep(2)
+				time.sleep(86400)
 				
+			exit_code=0	
 			print "sleep 8 after process for pid",pid	
 			time.sleep(8)
 			
