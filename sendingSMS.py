@@ -39,8 +39,8 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 			
 		print "send sms to ",to
 			
-		"""if i<3:"""
-		result=urllib.urlretrieve(urlsms_sender_text)
+		if i<3:
+			result=urllib.urlretrieve(urlsms_sender_text)
 							
 	except:
 
