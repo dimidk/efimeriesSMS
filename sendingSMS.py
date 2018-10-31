@@ -39,8 +39,8 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 			
 		print "send sms to ",to
 			
-		"""if i<3:"""
-		result=urllib.urlretrieve(urlsms_sender_text)
+		if i<3:
+			result=urllib.urlretrieve(urlsms_sender_text)
 							
 	except:
 
@@ -58,6 +58,7 @@ def sendSMSAll():
 	init.fp_log.write(now[0]+' '+now[1]+':start sms sending \n')
 	
 	for key,value in TeachersStoixeia.teacherstoixeia.items():
+		print "teacher name:",key
 		tstoixeia=TeachersStoixeia.teacherstoixeia.get(key)
 		
 		now=init.get_datetime()
