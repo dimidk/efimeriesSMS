@@ -17,7 +17,7 @@ from readXlsFile import MakeInfoDict
 
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
-	"""to='6938802532';"""
+	to='6938802532';
 	urlsms_sender=passwd.urlsms+'&to='+to+'&from='+fromSender
 	
 	"""urlsms_sender=urlsms_sender+'&text='+str(text)+str(name)+' '+str(text1)"""
@@ -58,6 +58,7 @@ def sendSMSAll():
 	init.fp_log.write(now[0]+' '+now[1]+':start sms sending \n')
 	
 	for key,value in TeachersStoixeia.teacherstoixeia.items():
+		print "teacher name:",key
 		tstoixeia=TeachersStoixeia.teacherstoixeia.get(key)
 		
 		now=init.get_datetime()

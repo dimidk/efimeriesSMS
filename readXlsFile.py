@@ -33,11 +33,17 @@ class MakeInfoDict():
 			else:
 				MakeInfoDict.infoDict[self.surname].append(self.listElement)
 		else:
-				
+			
+			print "make dict element for teacher:",self.surname
 			if self.surname not in MakeInfoDict.infoDict:
 				MakeInfoDict.infoDict[self.surname]=[self.tup]
 			else:
 				MakeInfoDict.infoDict[self.surname].append(self.tup)
+			
+			print "in init dictionary info"
+			for t in self.tup:
+				
+				print "t:",t
 
 
 def startRow(line,col):
@@ -111,12 +117,15 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 				"""parenthesis creates a generator, so it must explicitly declared"""
 				tup=tuple(t for t in rowdata)
 				
+				"""for t in tup:
+					print "for each teacher tuple of each line:",t"""
+				
 				teachername=line[k].strip().upper()
 				tonoExist=init.checkInTono(teachername)
 				if tonoExist:
-					"""print "teacherName:",teachername"""
+					print "teacherName:",teachername
 					teachername=init.replaceTono(teachername)
-					"""print "teachername after tono:",teachername"""
+					print "teachername after tono:",teachername
 				
 				
 				k+=1
@@ -125,6 +134,7 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 					teachername=allname[0]+' '+allname[1][0]
 							
 				s=MakeInfoDict(teachername,tup)
+				
 				
 		else:				
 		
