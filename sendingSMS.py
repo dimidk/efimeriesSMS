@@ -39,8 +39,8 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 			
 		print "send sms to ",to
 			
-		if i<3:
-			result=urllib.urlretrieve(urlsms_sender_text)
+		"""if i<1:"""
+		"""result=urllib.urlretrieve(urlsms_sender_text)"""
 							
 	except:
 
@@ -67,7 +67,7 @@ def sendSMSAll():
 		init.toSend=tstoixeia[2]
 		init.teacherName=key+' '+tstoixeia[1]
 		
-		searchkey=key+' '+tstoixeia[1].decode('utf-8')[0]
+		"""searchkey=key+' '+tstoixeia[1].decode('utf-8')[0]"""
 		
 		if MakeInfoDict.infoDict.has_key(key):
 			

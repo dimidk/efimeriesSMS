@@ -111,6 +111,7 @@ def mainFunction(pid):
 	
 		stoixeiaFile=init.stoixeiaDir+'/'+xlsfileStoixeia[0]
 		readStoixeia.read_files()
+		readStoixeia.fixDupKeys()
 		
 	if not xmlfileExist and not xlsfileExist:
 		print "there is nothing new for pid",pid

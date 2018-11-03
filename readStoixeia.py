@@ -10,10 +10,35 @@ import passwd
 import xlrd
 
 
+""" δουλεύει για να κάνει την δημιουργία του λεξικού, αλλά επειδή είναι το
+πρώτο όνομα που συναντά δεν το συμπληρώνει στο λεξικό και με το δεύτερο όνομα, οπότε
+δεν μπορεί μετά να βρει τα στοιχεία στο information dictionary."""
 
 class TeachersStoixeia():
 
 	teacherstoixeia=dict()
+	findDupNames=0
+	
+	
+	"""def changeKeyIn(self,old_name):
+		
+		print "in changekey:",old_name
+		Surname=old_name
+		if TeachersStoixeia.teacherstoixeia.has_key(self.Surname):
+				
+				old_key=TeachersStoixeia.teacherstoixeia[self.Surname]
+				
+				reload(sys)
+				sys.setdefaultencoding('utf-8')
+				
+				new_key=str(old_name)+' ' +old_key[1][0].decode('utf-8')
+				print "new name:",new_key
+				TeachersStoixeia.teacherstoixeia[new_key]=old_key
+				TeachersStoixeia.teacherstoixeia.pop(str(old_name))
+		
+		else:
+			print "no such a key found"""
+		
 	
 	def __init__(self,Surname,AFM,Name,PhoneNumber):
 		
@@ -23,9 +48,19 @@ class TeachersStoixeia():
 		self.Name=str(Name)
 		
 		self.PhoneNumber=str(PhoneNumber)
-	
-		TeachersStoixeia.teacherstoixeia[self.Surname]=[self.AFM,self.Name,self.PhoneNumber]
 		
+		if self.Surname not in TeachersStoixeia.teacherstoixeia:
+	
+			TeachersStoixeia.teacherstoixeia[self.Surname]=[self.AFM,self.Name,self.PhoneNumber]
+		else:
+			print "in else"
+						
+			TeachersStoixeia.findDupNames+=1
+			
+			Surname=Surname+" "+Name[0]
+			self.Surname=str(Surname)
+			TeachersStoixeia.teacherstoixeia[self.Surname]=[self.AFM,self.Name,self.PhoneNumber]
+			
 
 def mvFileToFirstName(filename):
 	
@@ -54,9 +89,16 @@ def read_StoixeiaFile(filename):
 		sys.setdefaultencoding('utf-8')
 		
 		afm=sheet.row_values(i)[1]
-		surname=sheet.row_values(i)[2]
-		name=sheet.row_values(i)[3]
+		surname=sheet.row_values(i)[2].strip()
+		name=sheet.row_values(i)[3].strip()
 		phonenumber=str(sheet.row_values(i)[5])
+		
+		print "going to add to dictionary\n"
+		print surname," ",afm," ",name," ",phonenumber
+		
+		if surname.find(' ')!=-1:
+			print "διπλό επώνυμ:",surname
+			surname=surname.split()[0]
 		
 		s=TeachersStoixeia(surname,afm,name,phonenumber)
 			
@@ -64,11 +106,37 @@ def read_StoixeiaFile(filename):
 		init.fp_log.write(now[0]+' '+now[1]+':add teacher ' + s.AFM +' '+s.Surname+' '+s.Name+' '+str(s.PhoneNumber) +'\n')
 	
 	
-
+	print "teachers' information\n"
+	for key,val in TeachersStoixeia.teacherstoixeia.items():
+		print key,"==>"
+		for t in val:
+			print t
+	
+	print "duplicate names:",TeachersStoixeia.findDupNames
 	filename_prc=filename.split('xls')[0]+'prc'
 	os.rename(filename,filename_prc)
 	
-
+def fixDupKeys():
+	
+	if TeachersStoixeia.findDupNames>0:
+		
+		keysList=TeachersStoixeia.teacherstoixeia.keys()
+		
+		for key in keysList:
+			if ' ' in key:
+				findkey=key.split()[0]
+		
+		stoixeia=TeachersStoixeia.teacherstoixeia.get(findkey)
+		new_key=str(findkey+' '+stoixeia[1].decode(encoding='UTF-8')[0])
+		TeachersStoixeia.teacherstoixeia[new_key]=TeachersStoixeia.teacherstoixeia[findkey]
+		del TeachersStoixeia.teacherstoixeia[findkey]
+		
+		print "fix key:",new_key,"==>"
+		for t in TeachersStoixeia.teacherstoixeia.get(new_key):
+			
+			print t
+		
+		
 """def update_dict(filename):
 	
 	try:

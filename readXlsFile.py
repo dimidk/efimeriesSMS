@@ -34,16 +34,15 @@ class MakeInfoDict():
 				MakeInfoDict.infoDict[self.surname].append(self.listElement)
 		else:
 			
-			print "make dict element for teacher:",self.surname
 			if self.surname not in MakeInfoDict.infoDict:
 				MakeInfoDict.infoDict[self.surname]=[self.tup]
 			else:
 				MakeInfoDict.infoDict[self.surname].append(self.tup)
 			
-			print "in init dictionary info"
+			"""print "in init dictionary info"
 			for t in self.tup:
 				
-				print "t:",t
+				print "t:",t"""
 
 
 def startRow(line,col):
@@ -123,9 +122,9 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 				teachername=line[k].strip().upper()
 				tonoExist=init.checkInTono(teachername)
 				if tonoExist:
-					print "teacherName:",teachername
+					"""print "teacherName:",teachername"""
 					teachername=init.replaceTono(teachername)
-					print "teachername after tono:",teachername
+					"""print "teachername after tono:",teachername"""
 				
 				
 				k+=1
@@ -200,6 +199,12 @@ def readXlsFile(xlsFormat,col,row):
 		"""print "process file with no row"""
 		index=0
 		readSpecificXls(index,start_row,sheet.nrows,sheet.ncols,start_col,sheet,col)
+		
+	for key,value in MakeInfoDict.infoDict.items():
+		print key,"==>"
+		for val in value:
+			for t in val:
+				print t
 	
 	
 	
