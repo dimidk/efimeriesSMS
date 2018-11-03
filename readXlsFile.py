@@ -39,10 +39,6 @@ class MakeInfoDict():
 			else:
 				MakeInfoDict.infoDict[self.surname].append(self.tup)
 			
-			"""print "in init dictionary info"
-			for t in self.tup:
-				
-				print "t:",t"""
 
 
 def startRow(line,col):
@@ -200,11 +196,11 @@ def readXlsFile(xlsFormat,col,row):
 		index=0
 		readSpecificXls(index,start_row,sheet.nrows,sheet.ncols,start_col,sheet,col)
 		
-	for key,value in MakeInfoDict.infoDict.items():
+	"""for key,value in MakeInfoDict.infoDict.items():
 		print key,"==>"
 		for val in value:
 			for t in val:
-				print t
+				print t"""
 	
 	
 	

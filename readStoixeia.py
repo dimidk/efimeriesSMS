@@ -122,9 +122,12 @@ def fixDupKeys():
 		
 		keysList=TeachersStoixeia.teacherstoixeia.keys()
 		
-		for key in keysList:
+		findkey=[k for k in keysList if ' ' in k][0].split()[0]
+		
+		
+		"""for key in keysList:
 			if ' ' in key:
-				findkey=key.split()[0]
+				findkey=key.split()[0]"""
 		
 		stoixeia=TeachersStoixeia.teacherstoixeia.get(findkey)
 		new_key=str(findkey+' '+stoixeia[1].decode(encoding='UTF-8')[0])
@@ -136,6 +139,10 @@ def fixDupKeys():
 			
 			print t
 		
+		codenum=0
+	else: codenum=-1	
+	
+	return codenum
 		
 """def update_dict(filename):
 	
