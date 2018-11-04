@@ -64,9 +64,7 @@ def checkBasicFiles(pid):
 
 
 def xmlStructure(pid):
-			
-	
-		
+					
 	global xlsFormat
 	global col
 	global row
@@ -131,7 +129,7 @@ def mainFunction(pid):
 					
 	if (not xmlfileExist and xlsfileExist) or (xmlfileExist and xlsfileExist):
 		
-		print "in second if in pid:",pid,xmlfileExist,xlsfileExist
+		print "xml and xls new exist or not new xml and new xls in pid:",pid,xmlfileExist,xlsfileExist
 		now=init.get_datetime()
 		init.fp_log.write(now[0]+' '+now[1]+'checking xml file and xls file for pid:'+str(pid)+'\n')
 		
@@ -198,12 +196,9 @@ if __name__== '__main__':
 			now=init.get_datetime()
 			init.fp_log.write(now[0]+' '+now[1]+':Stop application because there is no teachers file for pid'+str(pid)+'\n')
 			print "application going to exit\n"
-			time.sleep(5)
+			time.sleep(2)
 			exit(0)
-		
-		
-	"""print "xml exist,stoixeia exist,xls exist for pid",pid,xmlfileExist,xlsStoixeiaFile,xlsfileExist
-	print "xml name,stoixeia name,xls name for pid:",pid,xmlfile,xlsfileStoixeia,xlsfile"""
+
 	print "sleep 2 for pid",pid
 	time.sleep(2)
 	
@@ -216,8 +211,7 @@ if __name__== '__main__':
 	while True:
 		
 		checkBasicFiles(pid)
-		"""print "xml exist,stoixeia exist,xls exist for pid",pid,xmlfileExist,xlsStoixeiaFile,xlsfileExist
-		print "xml name,stoixeia name,xls name for pid",pid,xmlfile,xlsfileStoixeia,xlsfile"""
+
 		print "sleep 2 for pid",pid
 		time.sleep(2)
 		
@@ -232,14 +226,16 @@ if __name__== '__main__':
 				"""print "there is no new xls file for pid",pid"""
 				now=init.get_datetime()
 				init.fp_log.write(now[0]+' '+now[1]+':there is no new xls file for pid'+str(pid)+'\n')
-				print "sleep 2 for pid",pid
-				time.sleep(7200)
+				"""print "sleep 2 for pid",pid
+				time.sleep(7200)"""
 				
 			exit_code=0	
-			print "sleep 8 after process for pid",pid	
-			time.sleep(8)
+			print "sleep until new file for pid",pid	
+			time.sleep(7200)
+			"""time.sleep(8)"""
 			
 		else:
+			"""new xml file, so new process starts"""
 			child+=1
 			
 			temp_a=False
