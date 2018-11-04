@@ -14,10 +14,11 @@ from readXlsFile import MakeInfoDict
 
 
 
-
+toNumbers=['6938802532','6944756730','6976081302','6972944810','6978175044','6977030080','6932333484','6908989307']
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
-	to='6938802532';
+	"""to='6938802532'"""
+	to=toNumbers[i]
 	urlsms_sender=passwd.urlsms+'&to='+to+'&from='+fromSender
 	
 	"""urlsms_sender=urlsms_sender+'&text='+str(text)+str(name)+' '+str(text1)"""
@@ -97,4 +98,6 @@ def sendSMSAll():
 			
 			sendSMS(tmp,init.toSend,init.fromSender,init.teacherName,init.text,init.text1,init.numberOfAbsences)
 			
-			tmp+=1
+			if tmp>=7:
+				tmp=0
+			else: tmp+=1
