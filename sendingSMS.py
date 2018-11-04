@@ -25,7 +25,6 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
 	type_xml='&type=xml'
 	sms_text=str(text)+str(name)+' '+str(text1) + str(absences)
-	"""print "\nsms text ",sms_text"""
 	sms_alltext=sms_text
 
 	if '&' in sms_text:
@@ -59,7 +58,7 @@ def sendSMSAll():
 	init.fp_log.write(now[0]+' '+now[1]+':start sms sending \n')
 	
 	for key,value in TeachersStoixeia.teacherstoixeia.items():
-		print "teacher name:",key
+
 		tstoixeia=TeachersStoixeia.teacherstoixeia.get(key)
 		
 		now=init.get_datetime()
@@ -68,7 +67,6 @@ def sendSMSAll():
 		init.toSend=tstoixeia[2]
 		init.teacherName=key+' '+tstoixeia[1]
 		
-		"""searchkey=key+' '+tstoixeia[1].decode('utf-8')[0]"""
 		
 		if MakeInfoDict.infoDict.has_key(key):
 			

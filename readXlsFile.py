@@ -73,10 +73,6 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 	
 	now=init.get_datetime()
 	init.fp_log.write(now[0]+' '+now[1]+':Read excell row \n')
-	
-	"""print "all function parameters which is called\n"
-	print "start_row,nrows,start_col,:",start_row,nrows,start_col,
-	print "col, xlsFormat[1]:",col,row"""
 
 	for i in range(start_row+1,nrows):
 		
@@ -92,12 +88,6 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 				continue
 			else:
 				pass
-			
-		"""else:
-			if line[0]==row[0]:
-				pass
-			else:
-				continue"""
 				
 		k=start_col
 		if start_col>0:
@@ -111,9 +101,6 @@ def readSpecificXls(index,start_row,nrows,ncols,start_col,sheet,col,row=''):
 				rowdata.append(col[j])
 				"""parenthesis creates a generator, so it must explicitly declared"""
 				tup=tuple(t for t in rowdata)
-				
-				"""for t in tup:
-					print "for each teacher tuple of each line:",t"""
 				
 				teachername=line[k].strip().upper()
 				tonoExist=init.checkInTono(teachername)
