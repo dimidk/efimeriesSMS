@@ -111,6 +111,7 @@ def mainFunction(pid):
 	
 		stoixeiaFile=init.stoixeiaDir+'/'+xlsfileStoixeia[0]
 		readStoixeia.read_files()
+		codenum=readStoixeia.fixDupKeys()
 		
 	if not xmlfileExist and not xlsfileExist:
 		print "there is nothing new for pid",pid
@@ -232,7 +233,7 @@ if __name__== '__main__':
 				now=init.get_datetime()
 				init.fp_log.write(now[0]+' '+now[1]+':there is no new xls file for pid'+str(pid)+'\n')
 				print "sleep 2 for pid",pid
-				time.sleep(86400)
+				time.sleep(10800)
 				
 			exit_code=0	
 			print "sleep 8 after process for pid",pid	
