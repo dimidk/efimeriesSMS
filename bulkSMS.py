@@ -16,9 +16,7 @@ import readXlsFile
 from readXlsFile import MakeInfoDict
 
 
-
 """result=urllib.urlretrieve(urlsms)"""
-
 
 xmlfileExist=False
 xmlfile=[]
@@ -231,7 +229,7 @@ if __name__== '__main__':
 				
 			exit_code=0	
 			print "sleep until new file for pid",pid	
-			time.sleep(7200)
+			time.sleep(86400)
 			"""time.sleep(8)"""
 			
 		else:
