@@ -6,7 +6,7 @@ import email
 import email.header
 import time
 import sys
-import codecs
+import passwd
 
 """GREETINGS="Εφημερίες"""
 GREETINGS=['Εφημερίες','εφημερίες','Εφημεριες','εφημεριες']
@@ -14,8 +14,8 @@ GREETINGS=['Εφημερίες','εφημερίες','Εφημεριες','εφ�
 server='imap.gmail.com'
 port=993
 org_email='@gmail.com'
-username="dimi.epalefimeries"+org_email
-password="epalEfimeries"
+username=passwd.username+org_email
+password=passwd.password
 
 while True:
 	
