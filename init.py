@@ -25,7 +25,7 @@ xmlFileName=''
 xlsFileName=""
 fp_log=codecs.open(log_file,'a+')
 
-
+cp_cmd="mv " + xlsFileName + " ~/efimeriesSMS/efimeries"
 
 
 letterTono=['Ά','Έ','Ή','Ί','Ό','Ύ','Ώ','Ϊ','Ϋ']
