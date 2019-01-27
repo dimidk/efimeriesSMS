@@ -35,7 +35,7 @@ while True:
 	if '0' in UnseenInfo[0]:
 		print "go to sleep for a minute"
 			
-		time.sleep(60)
+		time.sleep(86400)
 		
 	else:
 		print "there is a new message"
@@ -96,7 +96,7 @@ while True:
 							else:
 								print "erron in copying file"
 						else:
-							print "Error in filename"							
+							print "No wanted file"							
 								
 
 			else:
