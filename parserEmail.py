@@ -89,7 +89,7 @@ while True:
 												
 							open(fp[0][0].decode(encoding='utf-8'), 'w').write(filedata)
 							
-							cp_cmd="mv " + fp[0][0].decode(encoding='utf-8') + " ~/efimeriesSMS/efimeries"
+							cp_cmd="mv " + fp[0][0].decode(encoding='utf-8') + " ./efimeries"
 							
 							if subprocess.call(cp_cmd.split()) == 0:
 								print "Ok! file moved to directory efimeries"
