@@ -86,7 +86,7 @@ while True:
 						"""decode to greek if  name is in greek characters"""
 						print fp[0][0].decode(encoding='utf-8')
 						
-						if fp[0][0].decode(encoding='utf-8')==init.xlsFileName:
+						if fp[0][0].decode(encoding='utf-8')=="efimeries.xls":
 												
 							open(fp[0][0].decode(encoding='utf-8'), 'w').write(filedata)
 							
