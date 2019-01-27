@@ -6,7 +6,6 @@ import email
 import email.header
 import time
 import sys
-import init
 import subprocess
 import passwd
 
@@ -92,7 +91,7 @@ while True:
 							
 							cp_cmd="mv " + fp[0][0].decode(encoding='utf-8') + " ~/efimeriesSMS/efimeries"
 							
-							if subprocess.call(init.cp_cmd.split()) == 0:
+							if subprocess.call(cp_cmd.split()) == 0:
 								print "Ok! file moved to directory efimeries"
 							else:
 								print "erron in copying file"
