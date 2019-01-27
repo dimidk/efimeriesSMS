@@ -6,16 +6,21 @@ import email
 import email.header
 import time
 import sys
+import init
+import subprocess
 import passwd
 
-"""GREETINGS="Εφημερίες"""
+
 GREETINGS=['Εφημερίες','εφημερίες','Εφημεριες','εφημεριες']
+epal='[Λίστα ΕΠΑΛ] '
+greetingsList=[epal+s for s in GREETINGS]
 
 server='imap.gmail.com'
 port=993
 org_email='@gmail.com'
 username=passwd.username+org_email
 password=passwd.password
+
 
 while True:
 	
@@ -54,20 +59,18 @@ while True:
 			εκτυπώνει το θέμα του μηνύματος"""
 			subject = decode[0]
 		
-			if subject in GREETINGS:
-				print "There is in ",GREETINGS," new message"
+			if subject in greetingsList:
+				print "There is in ",subject," new message"
 				"""print "Working ",msg_id," ",subject"""
 				
-				"""i=0"""
 				for part in msg.walk():
 					
-					"""print "in loop ",i"""
 					ctype=part.get_content_type()
-					"""print ctype"""
 					
 					if ctype in ['image/jpeg','image/png','image/jpg']:
+						filename=part.get_filename()
 						open(part.get_filename(), 'wb').write(part.get_payload(decode=True))
-					
+						
 						
 					else:
 						"""get the attachment data"""
@@ -80,18 +83,24 @@ while True:
 						"""find the name of the attachment"""
 						fp=email.header.decode_header(part.get_filename())
 						
-						"""decode to greek if the name is in greek characters"""
+						"""decode to greek if  name is in greek characters"""
 						print fp[0][0].decode(encoding='utf-8')
-						"""open(part.get_filename(), 'w').write(filedata)"""
+						
+						if fp[0][0].decode(encoding='utf-8')==init.xlsFileName:
 												
-						open(fp[0][0].decode(encoding='utf-8'), 'w').write(filedata)
-			
-					"""i+=1"""
+							open(fp[0][0].decode(encoding='utf-8'), 'w').write(filedata)
+							
+							if subprocess.call(init.cp_cmd.split()) == 0:
+								print "Ok! file moved to directory efimeries"
+							else:
+								print "erron in copying file"
+						else:
+							print "Error in filename"							
+								
+
 			else:
 				continue
 			
-			mail_subject=msg['subject']
-			mail_sender=msg['From']
 		
 	
 			
