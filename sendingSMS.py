@@ -13,11 +13,14 @@ from readStoixeia import TeachersStoixeia
 from readXlsFile import MakeInfoDict
 
 
-
+"""this is for testing"""
 toNumbers=['6938802532','6932333484','6908989307']
+
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
-	"""to=toNumbers[i]"""
+	"""this is for testing"""
+	to=toNumbers[i]
+	
 	urlsms_sender=passwd.urlsms+'&to='+to+'&from='+fromSender
 	
 	"""urlsms_sender=urlsms_sender+'&text='+str(text)+str(name)+' '+str(text1)"""
@@ -95,6 +98,7 @@ def sendSMSAll():
 			
 			sendSMS(tmp,init.toSend,init.fromSender,init.teacherName,init.text,init.text1,init.numberOfAbsences)
 			
-			"""if tmp>=2:
+			"""this is for testing"""
+			if tmp>=2:
 				tmp=0
-			else: tmp+=1"""
+			else: tmp+=1
