@@ -30,6 +30,7 @@ col=[]
 row=[]
 exit_code=0
 yes_list=['yes','YES','Yes','Y','y','YEs']
+no_list=['no','No','NO','nO']
 
 	
 def checkBasicFiles(pid):
@@ -190,12 +191,17 @@ if __name__== '__main__':
 		answer=raw_input("do you want to continue or to stop process? yes/no")
 		if answer in yes_list:
 			pass
-		else:
+		elif answer in no_list:
 			now=init.get_datetime()
 			init.fp_log.write(now[0]+' '+now[1]+':Stop application because there is no teachers file for pid'+str(pid)+'\n')
 			print "application going to exit\n"
 			time.sleep(2)
 			exit(0)
+		else:
+			print "There is no responce. Wait for 5 secs to start"
+			time.sleep(5)
+			now=init.get_datetime()
+			init.fp_log.write(now[0]+' '+now[1]+':Start application after 5 secs waiting,there is no teachers file for pid'+str(pid)+'\n')
 
 	print "sleep 2 for pid",pid
 	time.sleep(2)
@@ -231,6 +237,7 @@ if __name__== '__main__':
 			print "sleep until new file for pid",pid	
 			time.sleep(86400)
 			"""time.sleep(8)"""
+
 			
 		else:
 			"""new xml file, so new process starts"""
