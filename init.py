@@ -124,7 +124,7 @@ def findFile(filesDir,tag):
 	for root,dirs,filenames in os.walk(filesDir,topdown=True):
 		"""listall=[name for name in filenames if name.find('xls.prc')!=-1]"""
 		listall=[name for name in filenames if name.find(tag)!=-1]
-		sublist=[name for name in filenames if name not in listall and name.find('xml')!=-1]
+		sublist=[name for name in filenames if name not in listall]
 	
 	if len(sublist)>0:
 		a=True
