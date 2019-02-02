@@ -19,7 +19,7 @@ toNumbers=['6938802532','6932333484','6908989307']
 def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
 	"""this is for testing"""
-	to=toNumbers[i]
+	"""to=toNumbers[i]"""
 	
 	urlsms_sender=passwd.urlsms+'&to='+to+'&from='+fromSender
 	
@@ -99,6 +99,6 @@ def sendSMSAll():
 			sendSMS(tmp,init.toSend,init.fromSender,init.teacherName,init.text,init.text1,init.numberOfAbsences)
 			
 			"""this is for testing"""
-			if tmp>=2:
+			"""if tmp>=2:
 				tmp=0
-			else: tmp+=1
+			else: tmp+=1"""
