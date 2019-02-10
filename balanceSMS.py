@@ -17,9 +17,9 @@ port=465
 org_email='@gmail.com'
 username=passwd.username+org_email
 password=passwd.password
-
+targets=passwd.targets
 sender=username
-targets=['garwas74@gmail.com ','charitakis.ioannis@gmail.com','chairetaki@gmail.com','glemon1@gmail.com','plastara_katerina@yahoo.gr','dekadimi@gmail.com']
+
 
 Targets=['dekadimi@gmail.com']
 bodytext="Ενημέρωση SMS." + "\n"+"Το υπόλοιο των μηνυμάτων είναι: "
