@@ -100,7 +100,9 @@ while True:
 		msg['To']=', '.join(Targets)
 
 		sendEMail(msg)
+		
 	print "the time is:",now.hour	
 	time.sleep(3600)
+	
 			
 		
