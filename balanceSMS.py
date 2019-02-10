@@ -58,7 +58,7 @@ def sendEMail(msg):
 	print "prepare sending email"
 	server=smtplib.SMTP_SSL(server_host,port)
 	server.login(username,password)
-	server.sendmail(sender,Targets,msg.as_string())
+	server.sendmail(sender,targets,msg.as_string())
 	print "email sent "
 	server.quit()
 	
@@ -97,7 +97,7 @@ while True:
 		msg=MIMEText(Bodytext)
 		msg['Subject']='SMS Balance'
 		msg['From']=sender
-		msg['To']=', '.join(Targets)
+		msg['To']=', '.join(targets)
 
 		sendEMail(msg)
 	print "the time is:",now.hour	
