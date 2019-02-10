@@ -21,17 +21,7 @@ targets=passwd.targets
 sender=username
 
 
-Targets=['dekadimi@gmail.com']
 bodytext="Ενημέρωση SMS." + "\n"+"Το υπόλοιο των μηνυμάτων είναι: "
-
-
-def check_time(now,lastday,lastmonth):
-	
-	if now.day>lastday and now.hour==14 and now.minute>0:
-		notyet=False
-	else:
-		notyet=True
-	
 
 
 def balanceAndXml(url):
@@ -58,7 +48,7 @@ def sendEMail(msg):
 	print "prepare sending email"
 	server=smtplib.SMTP_SSL(server_host,port)
 	server.login(username,password)
-	server.sendmail(sender,Targets,msg.as_string())
+	server.sendmail(sender,targets,msg.as_string())
 	print "email sent "
 	server.quit()
 	
@@ -81,7 +71,7 @@ while True:
 		msg=MIMEText(Bodytext)
 		msg['Subject']='SMS Balance'
 		msg['From']=sender
-		msg['To']=', '.join(Targets)
+		msg['To']=', '.join(targets)
 
 		sendEMail(msg)
 		starting=False
@@ -97,7 +87,7 @@ while True:
 		msg=MIMEText(Bodytext)
 		msg['Subject']='SMS Balance'
 		msg['From']=sender
-		msg['To']=', '.join(Targets)
+		msg['To']=', '.join(targets)
 
 		sendEMail(msg)
 		
