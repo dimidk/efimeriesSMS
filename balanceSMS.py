@@ -9,7 +9,7 @@ import smtplib
 from email.mime.text import MIMEText
 import email.header
 import datetime
-import time
+
 
 
 server_host='smtp.gmail.com'
@@ -21,7 +21,7 @@ targets=passwd.targets
 sender=username
 
 
-bodytext="Ενημέρωση SMS." + "\n"+"Το υπόλοιο των μηνυμάτων είναι: "
+bodytext="Το υπόλοιο των μηνυμάτων είναι: "
 
 
 def balanceAndXml(url):
@@ -59,40 +59,31 @@ urlbal_sender=passwd.urlbalance+type_xml
 
 print "Start process for checking balance"
 
-starting=True
-while True:		
-	
-	if starting:
 		
-		balance=balanceAndXml(urlbal_sender)
+balance=balanceAndXml(urlbal_sender)
+Bodytext=bodytext+balance+"\n"
 
-		Bodytext=bodytext+balance
+msg=MIMEText(Bodytext)
+msg['Subject']='SMS Balance'
+msg['From']=sender
+msg['To']=', '.join(targets)
 
-		msg=MIMEText(Bodytext)
-		msg['Subject']='SMS Balance'
-		msg['From']=sender
-		msg['To']=', '.join(targets)
+print "create file\n"
 
-		sendEMail(msg)
-		starting=False
-		
-	
-	now=datetime.datetime.now()
-	if now.hour==14:
-		
-		balance=balanceAndXml(urlbal_sender)
+curDir=os.getcwd()
+curDir=curDir+"/sms_balance.txt"
 
-		Bodytext=bodytext+balance
+fp=open(curDir,"w")
 
-		msg=MIMEText(Bodytext)
-		msg['Subject']='SMS Balance'
-		msg['From']=sender
-		msg['To']=', '.join(targets)
+fp.write(Bodytext)
+fp.close()
 
-		sendEMail(msg)
-		
-	print "the time is:",now.hour	
-	time.sleep(3600)
+print "exit process\n"
+
+
+"""sendEMail(msg)"""
+
+
 	
 			
 		
