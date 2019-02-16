@@ -70,8 +70,8 @@ msg['To']=', '.join(targets)
 
 print "create file\n"
 
-curDir=os.getcwd()
-curDir=curDir+"/sms_balance.txt"
+"""curDir=os.getcwd()"""
+curDir=passwd.icurDir+"/sms_balance.txt"
 
 fp=open(curDir,"w")
 
