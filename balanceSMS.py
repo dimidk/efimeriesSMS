@@ -21,7 +21,7 @@ targets=passwd.targets
 sender=username
 
 
-bodytext="Το υπόλοιο των μηνυμάτων είναι: "
+bodytext="Το υπόλοιπο των μηνυμάτων είναι: "
 
 
 def balanceAndXml(url):
