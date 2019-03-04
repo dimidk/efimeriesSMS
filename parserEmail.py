@@ -34,8 +34,9 @@ print folderStatus," and ", UnseenInfo
 	
 if '0' in UnseenInfo[0]:
 	print "no new mail, going to exit"
-			
-	"""time.sleep(86400)"""
+	imapClient.close()
+	imapClient.logout()
+	exit(0)
 		
 else:
 	print "there is a new message"

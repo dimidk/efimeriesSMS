@@ -21,7 +21,7 @@ targets=passwd.targets
 sender=username
 
 
-bodytext="Το υπόλοιο των μηνυμάτων είναι: "
+bodytext="Το υπόλοιπο των μηνυμάτων είναι: "
 
 
 def balanceAndXml(url):
@@ -70,8 +70,8 @@ msg['To']=', '.join(targets)
 
 print "create file\n"
 
-curDir=os.getcwd()
-curDir=curDir+"/sms_balance.txt"
+"""curDir=os.getcwd()"""
+curDir=passwd.icurDir+"/sms_balance.txt"
 
 fp=open(curDir,"w")
 
