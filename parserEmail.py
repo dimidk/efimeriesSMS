@@ -21,92 +21,92 @@ username=passwd.username+org_email
 password=passwd.password
 
 
-while True:
+"""while True:"""
 	
-	print "starting"
-	imapClient=imaplib.IMAP4_SSL(server)
-	imapClient.login(username,password)
-	imapClient.select("INBOX")
+print "starting"
+imapClient=imaplib.IMAP4_SSL(server)
+imapClient.login(username,password)
+imapClient.select("INBOX")
 	
 
-	folderStatus, UnseenInfo = imapClient.status('INBOX', "(UNSEEN)")
-	print folderStatus," and ", UnseenInfo
+folderStatus, UnseenInfo = imapClient.status('INBOX', "(UNSEEN)")
+print folderStatus," and ", UnseenInfo
 	
-	if '0' in UnseenInfo[0]:
-		print "go to sleep for a minute"
+if '0' in UnseenInfo[0]:
+	print "no new mail, going to exit"
 			
-		time.sleep(86400)
+	"""time.sleep(86400)"""
 		
-	else:
-		print "there is a new message"
-		x,message_ids=imapClient.search(None,"UNSEEN")
-		for msg_id in message_ids[0].split():
+else:
+	print "there is a new message"
+	x,message_ids=imapClient.search(None,"UNSEEN")
+	for msg_id in message_ids[0].split():
 		
-			_, data=imapClient.fetch(msg_id,"(RFC822)")
+		_, data=imapClient.fetch(msg_id,"(RFC822)")
 		
-			msg=email.message_from_string(data[0][1])
-			decode = email.header.decode_header(msg['Subject'])[0]
+		msg=email.message_from_string(data[0][1])
+		decode = email.header.decode_header(msg['Subject'])[0]
 			
-			"""parser = email.parser.HeaderParser()
-			headers = parser.parsestr(msg.as_string())
-			
-			for h in headers.items():
-				print "header ",h
-			don't need the above  but keep just in case.
-			
-			decode=decode[0].decode(encoding='UTF-8')
-			εκτυπώνει το θέμα του μηνύματος"""
-			subject = decode[0]
+		"""parser = email.parser.HeaderParser()
+		headers = parser.parsestr(msg.as_string())
 		
-			if subject in greetingsList:
-				print "There is in ",subject," new message"
-				"""print "Working ",msg_id," ",subject"""
-				
-				for part in msg.walk():
+		for h in headers.items():
+			print "header ",h
+		don't need the above  but keep just in case.
+			
+		decode=decode[0].decode(encoding='UTF-8')
+		εκτυπώνει το θέμα του μηνύματος"""
+		subject = decode[0]
+		
+		if subject in greetingsList:
+			print "There is in ",subject," new message"
+			"""print "Working ",msg_id," ",subject"""
+			
+			for part in msg.walk():
 					
-					ctype=part.get_content_type()
+				ctype=part.get_content_type()
 					
-					if ctype in ['image/jpeg','image/png','image/jpg']:
-						filename=part.get_filename()
-						open(part.get_filename(), 'wb').write(part.get_payload(decode=True))
+				if ctype in ['image/jpeg','image/png','image/jpg']:
+					filename=part.get_filename()
+					open(part.get_filename(), 'wb').write(part.get_payload(decode=True))
 						
 						
-					else:
-						"""get the attachment data"""
-						filedata=part.get_payload(decode=True)
+				else:
+					"""get the attachment data"""
+					filedata=part.get_payload(decode=True)
 
-						if part.get_filename()==None:
-							continue
-						"""open(part.get_filename(), 'w').write(part.get_payload(decode=True))"""
+					if part.get_filename()==None:
+						continue
+					"""open(part.get_filename(), 'w').write(part.get_payload(decode=True))"""
 						
-						"""find the name of the attachment"""
-						fp=email.header.decode_header(part.get_filename())
+					"""find the name of the attachment"""
+					fp=email.header.decode_header(part.get_filename())
 						
-						"""decode to greek if  name is in greek characters"""
-						print fp[0][0].decode(encoding='utf-8')
+					"""decode to greek if  name is in greek characters"""
+					print fp[0][0].decode(encoding='utf-8')
 						
-						if fp[0][0].decode(encoding='utf-8')=="efimeries.xls":
+					if fp[0][0].decode(encoding='utf-8')=="efimeries.xls":
 												
-							open(fp[0][0].decode(encoding='utf-8'), 'w').write(filedata)
+						open(fp[0][0].decode(encoding='utf-8'), 'w').write(filedata)
 							
-							cp_cmd="mv " + fp[0][0].decode(encoding='utf-8') + " ./efimeries"
-							
-							if subprocess.call(cp_cmd.split()) == 0:
-								print "Ok! file moved to directory efimeries"
-							else:
-								print "erron in copying file"
+						cp_cmd="mv " + fp[0][0].decode(encoding='utf-8') + " ./efimeries"
+						
+						if subprocess.call(cp_cmd.split()) == 0:
+							print "Ok! file moved to directory efimeries"
 						else:
-							print "No wanted file"							
-								
+							print "erron in copying file"
+					else:
+						print "No wanted file"							
+							
 
-			else:
-				continue
+		else:
+			continue
 			
 		
 	
 			
-	print "close imap connection"	
-	imapClient.close()
-	imapClient.logout()
+print "close imap connection"	
+imapClient.close()
+imapClient.logout()
 	
 	
