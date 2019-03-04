@@ -35,7 +35,7 @@ while True:
 	if '0' in UnseenInfo[0]:
 		print "go to sleep for a minute"
 			
-		time.sleep(86400)
+		time.sleep(43200)
 		
 	else:
 		print "there is a new message"
