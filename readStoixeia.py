@@ -19,25 +19,26 @@ class TeachersStoixeia():
 	findDupNames=0
 	
 			
-	def __init__(self,Surname,AFM,Name,PhoneNumber):
+	def __init__(self,Surname,Specialty,AFM,Name,PhoneNumber):
 		
 		
 		self.Surname=str(Surname)
+		self.Specialty=str(Specialty)
 		self.AFM=str(AFM)
 		self.Name=str(Name)
 		
 		self.PhoneNumber=str(PhoneNumber)
 		
-		if self.Surname not in TeachersStoixeia.teacherstoixeia:
+		if (self.Surname,self.Specialty) not in TeachersStoixeia.teacherstoixeia:
 	
-			TeachersStoixeia.teacherstoixeia[self.Surname]=[self.AFM,self.Name,self.PhoneNumber]
+			TeachersStoixeia.teacherstoixeia[(self.Surname,self.Specialty)]=[self.AFM,self.Name,self.PhoneNumber]
 		else:
 						
 			TeachersStoixeia.findDupNames+=1
 			
 			Surname=Surname+" "+Name[0]
 			self.Surname=str(Surname)
-			TeachersStoixeia.teacherstoixeia[self.Surname]=[self.AFM,self.Name,self.PhoneNumber]
+			TeachersStoixeia.teacherstoixeia[(self.Surname,self.Specialty)]=[self.AFM,self.Name,self.PhoneNumber]
 			
 
 def mvFileToFirstName(filename):
@@ -70,26 +71,32 @@ def read_StoixeiaFile(filename):
 		sys.setdefaultencoding('utf-8')
 		
 		afm=sheet.row_values(i)[1]
-		surname=sheet.row_values(i)[2].strip()
-		name=sheet.row_values(i)[3].strip()
-		phonenumber=str(sheet.row_values(i)[5])
+		specialty=sheet.row_values(i)[2]
+		surname=sheet.row_values(i)[3].strip()
+		name=sheet.row_values(i)[4].strip()
+		phonenumber=str(sheet.row_values(i)[6])
 
 		if surname.find(' ')!=-1:
 			surname=surname.split()[0]
 		
-		s=TeachersStoixeia(surname,afm,name,phonenumber)
+		s=TeachersStoixeia(surname,specialty,afm,name,phonenumber)
 			
 		now=init.get_datetime()
-		init.fp_log.write(now[0]+' '+now[1]+':add teacher ' + s.AFM +' '+s.Surname+' '+s.Name+' '+str(s.PhoneNumber) +'\n')
+		init.fp_log.write(now[0]+' '+now[1]+':add teacher ' + str(s.AFM) +' '+str(s.Surname)+' '+str(s.Specialty)+' '+str(s.Name)+' '+str(s.PhoneNumber) +'\n')
 	
 	
 	"""print "teachers' information\n"
 	for key,val in TeachersStoixeia.teacherstoixeia.items():
-		print key,"==>"
+		for k in key:
+			print k,
+		print "==>",
 		for t in val:
-			print t
+			print t,
+		print "\n"
 	
 	print "duplicate names:",TeachersStoixeia.findDupNames"""
+	
+	
 	filename_prc=filename.split('xls')[0]+'prc'
 	os.rename(filename,filename_prc)
 	
@@ -174,4 +181,6 @@ def read_files():
 	now=init.get_datetime()
 	init.fp_log.write(now[0]+' '+now[1]+':Complete Teachers'' information dictionary\n')
 	
+"""testing purpose"""
+"""read_files()"""
 

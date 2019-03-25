@@ -13,6 +13,8 @@ from readStoixeia import TeachersStoixeia
 from readXlsFile import MakeInfoDict
 
 
+
+
 """this is for testing"""
 toNumbers=['6938802532','6932333484','6908989307']
 
@@ -41,7 +43,8 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 			
 		print "send sms to ",to
 			
-		"""if i<1:"""
+
+		"""if i<=2:"""
 		result=urllib.urlretrieve(urlsms_sender_text)
 							
 	except:
@@ -54,20 +57,19 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 
 def sendSMSAll():
 	
-	tmp=0
 	
 	now=init.get_datetime()
 	init.fp_log.write(now[0]+' '+now[1]+':start sms sending \n')
-	
+	tmp=0
 	for key,value in TeachersStoixeia.teacherstoixeia.items():
 
 		tstoixeia=TeachersStoixeia.teacherstoixeia.get(key)
 		
 		now=init.get_datetime()
-		init.fp_log.write(now[0]+' '+now[1]+':get name and phone number for:'+key+' \n')
+		init.fp_log.write(now[0]+' '+now[1]+':get name and phone number for:'+key[0]+" "+key[1]+' \n')
 		
 		init.toSend=tstoixeia[2]
-		init.teacherName=key+' '+tstoixeia[1]
+		init.teacherName=key[0]+' '+tstoixeia[1]
 		
 		
 		if MakeInfoDict.infoDict.has_key(key):
@@ -99,6 +101,8 @@ def sendSMSAll():
 			sendSMS(tmp,init.toSend,init.fromSender,init.teacherName,init.text,init.text1,init.numberOfAbsences)
 			
 			"""this is for testing"""
-			"""if tmp>=2:
+			if tmp>=2:
 				tmp=0
-			else: tmp+=1"""
+
+			else: tmp+=1
+		
